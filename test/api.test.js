@@ -4,6 +4,11 @@ const server = require('../server');
 const request = supertest(server);
 
 test('/api', async () => {
-  const { body } = await request.get('/api').expect(200);
-  expect(body.message).toBe('ok');
+	await request.get('/api').expect(200);
+});
+
+describe('Get /api/recipes', () => {
+	test('200 respond with all reciepes', async () => {
+		const { body } = await request.get('/api/recipes').expect(200);
+	});
 });
